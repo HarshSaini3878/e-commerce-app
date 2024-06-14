@@ -1,9 +1,9 @@
 import { useState,useEffect,useContext,createContext} from "react";
 const AuthContext=createContext();
-const [Auth,SetAuth]=useState();
+
 
 const AuthProvider=({children})=>{
-    const [auth,SetAuth]=useState(
+    const [Auth,SetAuth]=useState(
        { 
         user:null,
         token:""
@@ -19,7 +19,7 @@ if(data){
         token:parseData.token
     })
 }
-    },[])
+    },[Auth])
     return(
 
        <AuthContext.Provider value={[Auth,SetAuth]}>
@@ -27,7 +27,5 @@ if(data){
        </AuthContext.Provider>
     )
 }
-const useAuth=()=>{
-    useContext(AuthContext)
-}
-export {useAuth,AuthProvider}
+const useAuth=()=> useContext(AuthContext);
+export {useAuth,AuthProvider};

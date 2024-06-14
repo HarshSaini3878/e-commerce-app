@@ -28,12 +28,13 @@ const Login = () => {
           });
           if (response && response.data.success) {
             toast.success(response.data.message);
-            localStorage.setItem('Auth',JSON.stringify(res.data));
             SetAuth({
                 ...Auth,
                 user:response.data.user,
                 token:response.data.token
             })
+            localStorage.setItem('Auth',JSON.stringify(response.data));
+          
             navigate("/");
           } else {
             toast.error(response.data.message);
