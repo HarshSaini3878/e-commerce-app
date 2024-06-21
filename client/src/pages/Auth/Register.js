@@ -11,6 +11,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [answer, setAnswer] = useState("");
   const navigate = useNavigate();
 
   const handlePhoneChange = (e) => {
@@ -30,6 +31,7 @@ const Register = () => {
         password,
         phone,
         address,
+        answer
       });
       if (response.data.success) {
         toast.success(response.data.message);
@@ -143,14 +145,18 @@ const Register = () => {
                 required
               />
             </div>
-            {/* <div className="mb-3">
-    <select className="form-select" placeholder="Role">
-      <option value="">Select Role</option>
-      <option value="customer">Customer</option>
-      <option value="vendor">Vendor</option>
-      <option value="admin">Admin</option>
-    </select>
-  </div> */}
+            <div className="mb-3">
+            <input
+              type="text"
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              style={{ width: "300px", height: "2.75rem" }}
+              className="form-control"
+              id="exampleInputEmail1"
+              placeholder="What is Your Favorite animal ?"
+              required
+            />
+          </div>
 
             <button type="submit" class="btn btn-dark btn-lg">
               Submit

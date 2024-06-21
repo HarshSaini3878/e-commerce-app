@@ -3,7 +3,7 @@ import React, { Children, useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
 import toast  from 'react-hot-toast';
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import axios from "axios";
 import { token } from "morgan";
 const Login = () => {
@@ -15,7 +15,7 @@ const Login = () => {
     const [address, setAddress] = useState("");
     const navigate = useNavigate();
     const [Auth,SetAuth]=useAuth()
-     
+     const location=useLocation();
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -35,7 +35,7 @@ const Login = () => {
             })
             localStorage.setItem('Auth',JSON.stringify(response.data));
           
-            navigate("/");
+            navigate(location.pathname||"/");
           } else {
             toast.error(response.data.message);
           }
@@ -111,18 +111,16 @@ const Login = () => {
             </div>
            
        
-            {/* <div className="mb-3">
-    <select className="form-select" placeholder="Role">
-      <option value="">Select Role</option>
-      <option value="customer">Customer</option>
-      <option value="vendor">Vendor</option>
-      <option value="admin">Admin</option>
-    </select>
-  </div> */}
 
-            <button type="submit" class="btn btn-dark btn-lg">
+           <div  style={{ display:"flex", columnGap:"1.5rem"}}>
+           
+            <button type="submit" class="btn btn-dark btn-lg" style={{ width:"8rem"}}>
               Submit
             </button>
+            <button type="button" class="btn btn-dark btn-lg" onClick={()=>{navigate('/forgot-password')}}>
+              Forgot Password
+            </button>
+           </div>
           </form>
         </div>
       </Layout>
