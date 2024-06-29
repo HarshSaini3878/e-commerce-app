@@ -1,7 +1,7 @@
 import express from 'express';
-import { IsAdmin, requireSignIn } from '../middlewares/auth.middleware';
-import {categoryControlller, createCategoryController, deleteCategoryCOntroller, singleCategoryController, updateCategoryController} from './../controllers/CategoryController'
-const router=expres();
+import { IsAdmin, requireSignIn } from '../middlewares/auth.middleware.js';
+import {categoryControlller, createCategoryController, deleteCategoryCOntroller, singleCategoryController, updateCategoryController} from './../controllers/CategoryController.js'
+const router=express.Router();
 
 router.post('/create-category',requireSignIn,IsAdmin,createCategoryController);
 router.put('/update-category/:id',requireSignIn,IsAdmin,updateCategoryController)
