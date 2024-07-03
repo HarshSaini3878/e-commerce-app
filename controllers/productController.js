@@ -330,15 +330,17 @@ export const productCategoryController = async (req, res) => {
 //token
 export const braintreeTokenController = async (req, res) => {
   try {
-    gateway.clientToken.generate({}, function (err, response) {
+    gateway.clientToken.generate({}, (err, response) => {
       if (err) {
-        res.status(500).send(err);
+        console.error("Braintree Token Generation Error:", err);
+        res.status(500).json({ error: "Failed to generate Braintree client token" });
       } else {
-        res.send(response);
+        res.json({ clientToken: response.clientToken });
       }
     });
   } catch (error) {
-    console.log(error);
+    console.error("Unexpected Error:", error);
+    res.status(500).json({ error: "An unexpected error occurred" });
   }
 };
 

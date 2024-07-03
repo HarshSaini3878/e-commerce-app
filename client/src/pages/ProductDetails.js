@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./../components/Layout/Layout";
 import axios from "axios";
+import { useCart } from "../context/cart";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/ProductDetailsStyles.css";
-
+import toast from "react-hot-toast";
 const ProductDetails = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [cart, setCart] = useCart();
   const apiUrl = process.env.REACT_APP_API || "http://localhost:8080";
   //initalp details
   useEffect(() => {
@@ -30,7 +32,7 @@ const ProductDetails = () => {
   const getSimilarProduct = async (pid, cid) => {
     try {
       const { data } = await axios.get(
-        `/api/v1/product/related-product/${pid}/${cid}`
+        `${apiUrl}/api/v1/product/related-product/${pid}/${cid}`
       );
       setRelatedProducts(data?.products);
     } catch (error) {
@@ -99,7 +101,7 @@ const ProductDetails = () => {
                   >
                     More Details
                   </button>
-                  {/* <button
+                 <button
                   className="btn btn-dark ms-1"
                   onClick={() => {
                     setCart([...cart, p]);
@@ -111,7 +113,7 @@ const ProductDetails = () => {
                   }}
                 >
                   ADD TO CART
-                </button> */}
+                </button> 
                 </div>
               </div>
             </div>
