@@ -11,12 +11,11 @@ const CreateCategory = () => {
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(null);
   const [updatedName, setUpdatedName] = useState("");
-  //handle Form
   const apiUrl = process.env.REACT_APP_API || "http://localhost:8080";
+  //handle Form
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    
       const { data } = await axios.post(`${apiUrl}/api/v1/category/create-category`, {
         name,
       });
@@ -28,7 +27,7 @@ const CreateCategory = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("somthing went wrong in input form");
+      // toast.error("somthing went wrong in input form");
     }
   };
 
@@ -36,8 +35,8 @@ const CreateCategory = () => {
   const getAllCategory = async () => {
     try {
       const { data } = await axios.get(`${apiUrl}/api/v1/category/get-category`);
-      if (data.success) {
-        setCategories(data.category);
+      if (data?.success) {
+        setCategories(data?.category);
       }
     } catch (error) {
       console.log(error);
@@ -57,7 +56,7 @@ const CreateCategory = () => {
         `${apiUrl}/api/v1/category/update-category/${selected._id}`,
         { name: updatedName }
       );
-      if (data.success) {
+      if (data?.success) {
         toast.success(`${updatedName} is updated`);
         setSelected(null);
         setUpdatedName("");
@@ -67,7 +66,7 @@ const CreateCategory = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error("Somtihing went wrong");
+      console.log(error);
     }
   };
   //delete category
@@ -89,7 +88,7 @@ const CreateCategory = () => {
   };
   return (
     <Layout title={"Dashboard - Create Category"}>
-      <div className="container-fluid m-3 p-3">
+      <div className="container-fluid m-3 p-3 dashboard">
         <div className="row">
           <div className="col-md-3">
             <AdminMenu />

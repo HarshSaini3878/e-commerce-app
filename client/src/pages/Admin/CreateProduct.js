@@ -17,9 +17,8 @@ const CreateProduct = () => {
   const [quantity, setQuantity] = useState("");
   const [shipping, setShipping] = useState("");
   const [photo, setPhoto] = useState("");
-
-  //get all category
   const apiUrl = process.env.REACT_APP_API || "http://localhost:8080";
+  //get all category
   const getAllCategory = async () => {
     try {
       const { data } = await axios.get(`${apiUrl}/api/v1/category/get-category`);
@@ -65,7 +64,7 @@ const CreateProduct = () => {
 
   return (
     <Layout title={"Dashboard - Create Product"}>
-      <div className="container-fluid m-3 p-3">
+      <div className="container-fluid m-3 p-3 dashboard">
         <div className="row">
           <div className="col-md-3">
             <AdminMenu />

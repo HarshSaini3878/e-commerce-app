@@ -375,5 +375,3 @@ export const brainTreePaymentController = async (req, res) => {
     console.log(error);
   }
 };
-
-

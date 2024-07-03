@@ -11,13 +11,11 @@ const ForgotPasssword = () => {
   const [answer, setAnswer] = useState("");
 
   const navigate = useNavigate();
-
+  const apiUrl = process.env.REACT_APP_API || "http://localhost:8080";
   // form function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const apiUrl = process.env.REACT_APP_API || "http://localhost:8080";
-          
       const res = await axios.post(`${apiUrl}/api/v1/auth/forgot-password`, {
         email,
         newPassword,

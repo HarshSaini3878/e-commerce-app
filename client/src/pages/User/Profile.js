@@ -13,7 +13,7 @@ const Profile = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const apiUrl = process.env.REACT_APP_API || "http://localhost:8080";
+
   //get user data
   useEffect(() => {
     const { email, name, phone, address } = auth?.user;
@@ -22,7 +22,7 @@ const Profile = () => {
     setEmail(email);
     setAddress(address);
   }, [auth?.user]);
-
+  const apiUrl = process.env.REACT_APP_API || "http://localhost:8080";
   // form function
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,13 +51,13 @@ const Profile = () => {
   };
   return (
     <Layout title={"Your Profile"}>
-      <div className="container-fluid m-3 p-3">
+      <div className="container-fluid m-3 p-3 dashboard">
         <div className="row">
           <div className="col-md-3">
             <UserMenu />
           </div>
-          <div className="col-md-9">
-            <div className="form-container ">
+          <div className="col-md-8">
+            <div className="form-container" style={{ marginTop: "-40px" }}>
               <form onSubmit={handleSubmit}>
                 <h4 className="title">USER PROFILE</h4>
                 <div className="mb-3">
